@@ -1,0 +1,31 @@
+#AULA 13/09/2022
+pkg load image
+I=imread("PDI.jpg");
+Irot=imrotate(I,0);
+figure(1);
+imshow(Irot);
+
+#pegar uma parte da imagem 
+
+figure(2);
+Iteste=Irot(100:200,200:300,:);
+imshow(Iteste);
+#comando para aumentar o zoom
+figure(3);
+imcrop(Iteste);
+
+Iteste1=imresize(Iteste,[559 376]);
+figure(5);
+imshow(Iteste1);
+
+#inserindo parte preta
+Iteste1=I;
+Iteste1(100:200,200:300,:)=0;
+imshow(Iteste1);
+
+#inserindo parte manchada
+f=fspecial("average",20);
+Iteste2=imfilter(I,f);
+I(100:200,200:300,:)=Iteste2(100:200,200:300,:);
+figure(6);
+imshow(I);
